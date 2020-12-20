@@ -18,18 +18,18 @@ public class DocumentController {
 		this.documentService = documentService;
 	}
 
-	@PostMapping("/document")
-	public ResponseEntity<Void> uploadDocument(@RequestParam (name = "file") MultipartFile file) {
-		documentService.upload(file);
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
-
 	@GetMapping("/document")
 	public ResponseEntity<List<Document>> getDocument() {
 		return new ResponseEntity<>(documentService.selectAll(), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/document/{id}")
+	@PostMapping("/admin/document")
+	public ResponseEntity<Void> uploadDocument(@RequestParam (name = "file") MultipartFile file) {
+		documentService.upload(file);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@DeleteMapping("/admin/document/{id}")
 	public ResponseEntity<Void> deleteDocument(@PathVariable int id) {
 		documentService.deleteDocument(id);
 		return new ResponseEntity<>(HttpStatus.OK);

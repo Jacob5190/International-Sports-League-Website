@@ -8,4 +8,5 @@ public interface TeamService {
 	List<Team> getTeam(int schoolId, int sportId);
 	Team getTeamById(int teamId);
 	List<Team> getTeamByDivision(int division);
+	List<Team> getTeamByAgeGenderDivision(int age, String gender, int division);
 }

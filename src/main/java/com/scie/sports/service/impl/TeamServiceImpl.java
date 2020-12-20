@@ -29,4 +29,9 @@ public class TeamServiceImpl implements TeamService{
 	public List<Team> getTeamByDivision (int division) {
 		return teamDAO.findByDivision(division);
 	}
+
+	@Override
+	public List<Team> getTeamByAgeGenderDivision (int age, String gender, int division) {
+		return teamDAO.findByAgeGroupAndGenderGroupAndDivision(age, gender, division);
+	}
 }

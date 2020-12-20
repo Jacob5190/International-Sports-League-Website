@@ -5,7 +5,6 @@ import com.scie.sports.service.CalendarEventService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.text.ParseException;
 import java.util.List;
 
@@ -23,15 +22,15 @@ public class CalendarEventController {
 		return new ResponseEntity<>(calendarEventService.selectAll(), HttpStatus.OK);
 	}
 
-	@PostMapping("/calendar-event")
-	public ResponseEntity<Void> uploadCalendarEvent(@RequestParam(name = "date") String date, @RequestParam(name = "title") String title) throws ParseException {
+	@PostMapping("/admin/calendar-event")
+	public ResponseEntity<String> uploadCalendarEvent(@RequestParam(name = "date") String date, @RequestParam(name = "title") String title) throws ParseException {
 		calendarEventService.updateEvent(date, title);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>("New event has been uploaded", HttpStatus.OK);
 	}
 
-	@DeleteMapping("/calendar-event/{id}")
-	public ResponseEntity<Void> deleteCalendarEvent(@PathVariable int id) {
+	@DeleteMapping("/admin/calendar-event/{id}")
+	public ResponseEntity<String> deleteCalendarEvent(@PathVariable int id) {
 		calendarEventService.deleteEvent(id);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>("Event " + id + " has been deleted", HttpStatus.OK);
 	}
 }

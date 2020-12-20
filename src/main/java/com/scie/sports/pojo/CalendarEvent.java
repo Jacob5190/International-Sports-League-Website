@@ -1,10 +1,13 @@
 package com.scie.sports.pojo;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "calendar_event")
+@Data
 public class CalendarEvent {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,28 +20,4 @@ public class CalendarEvent {
 
 	@Column(name = "title")
 	private String title;
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public int getId () {
-		return id;
-	}
-
-	public void setId (int id) {
-		this.id = id;
-	}
-
-	public String getTitle () {
-		return title;
-	}
-
-	public void setTitle (String title) {
-		this.title = title;
-	}
 }

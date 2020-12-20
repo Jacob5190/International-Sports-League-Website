@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.util.List;
 
 @RestController
@@ -18,7 +17,7 @@ public class ImageController {
 		this.imageService = imageService;
 	}
 
-	@PostMapping("/image")
+	@PostMapping("/admin/image")
 	public void uploadImage(@RequestParam(name = "file")MultipartFile file) {
 		imageService.uploadGalleryImage(file);
 	}
@@ -32,7 +31,7 @@ public class ImageController {
 	public ResponseEntity<Image> getImageById(@PathVariable int id) {
 		return new ResponseEntity<>(imageService.getImageById(id), HttpStatus.OK);
 	}
-	@DeleteMapping("/image/{id}")
+	@DeleteMapping("/admin/image/{id}")
 	public ResponseEntity<Void> deleteImage(@PathVariable int id) {
 		imageService.deleteGalleryImage(id);
 		return new ResponseEntity<>(HttpStatus.OK);

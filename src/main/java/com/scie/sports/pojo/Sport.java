@@ -1,9 +1,12 @@
 package com.scie.sports.pojo;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Sports")
+@Data
 public class Sport {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,20 +15,4 @@ public class Sport {
 
 	@Column(name = "name")
 	private String name;
-
-	public String getName () {
-		return name;
-	}
-
-	public void setName (String name) {
-		this.name = name;
-	}
-
-	public int getId () {
-		return id;
-	}
-
-	public void setId (int id) {
-		this.id = id;
-	}
 }

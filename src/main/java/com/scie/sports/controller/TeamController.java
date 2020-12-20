@@ -49,4 +49,8 @@ public class TeamController {
 	public ResponseEntity<List<Team>> getTeamByDivision(@PathVariable int division) {
 		return new ResponseEntity<>(teamService.getTeamByDivision(division), HttpStatus.OK);
 	}
+	@GetMapping("/team/age/{age}/gender/{gender}/division/{division}")
+	public ResponseEntity<List<Team>> getTeamByAgeGenderDivision(@PathVariable int age, @PathVariable String gender, @PathVariable int division) {
+		return new ResponseEntity<>(teamService.getTeamByAgeGenderDivision(age, gender, division), HttpStatus.OK);
+	}
 }

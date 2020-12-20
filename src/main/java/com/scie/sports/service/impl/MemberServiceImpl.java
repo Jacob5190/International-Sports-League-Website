@@ -36,7 +36,7 @@ public class MemberServiceImpl implements MemberService {
 		for (Member coach : coaches) {
 			images.add((coach.getImageId()!=null)?imageDAO.findById(coach.getImageId()).get():null);
 		}
-		Map<String, Object> map = new HashMap();
+		Map<String, Object> map = new HashMap<>(2);
 		map.put("coaches", coaches);
 		map.put("images", images);
 		return map;
@@ -49,7 +49,7 @@ public class MemberServiceImpl implements MemberService {
 		for (Member member : members) {
 			images.add((member.getImageId()!=null)?imageDAO.findById(member.getImageId()).get():null);
 		}
-		Map<String, Object> map = new HashMap();
+		Map<String, Object> map = new HashMap<>(2);
 		map.put("members", members);
 		map.put("images", images);
 		return map;

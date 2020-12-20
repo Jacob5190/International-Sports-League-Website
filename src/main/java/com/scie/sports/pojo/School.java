@@ -1,9 +1,12 @@
 package com.scie.sports.pojo;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "schools")
+@Data
 public class School {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,37 +31,5 @@ public class School {
 
 	public void setId (int id) {
 		this.id = id;
-	}
-
-	public String getName () {
-		return name;
-	}
-
-	public void setName (String name) {
-		this.name = name;
-	}
-
-	public int getImageId () {
-		return imageId;
-	}
-
-	public void setImageId (int imageId) {
-		this.imageId = imageId;
-	}
-
-	public String getSchoolLink () {
-		return schoolLink;
-	}
-
-	public void setSchoolLink (String schoolLink) {
-		this.schoolLink = schoolLink;
-	}
-
-	public String getAlias () {
-		return alias;
-	}
-
-	public void setAlias (String alias) {
-		this.alias = alias;
 	}
 }

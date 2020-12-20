@@ -1,9 +1,12 @@
 package com.scie.sports.pojo;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "images")
+@Data
 public class Image {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,35 +22,9 @@ public class Image {
 	@Column(name = "image_type")
 	private String imageType;
 
-	public int getId () {
-		return id;
-	}
+	@Column(name = "sport_id")
+	private Integer sportId;
 
-	public void setId (int id) {
-		this.id = id;
-	}
-
-	public String getPath () {
-		return path;
-	}
-
-	public void setPath (String path) {
-		this.path = path;
-	}
-
-	public String getFileName () {
-		return fileName;
-	}
-
-	public void setFileName (String fileName) {
-		this.fileName = fileName;
-	}
-
-	public String getImageType () {
-		return imageType;
-	}
-
-	public void setImageType (String imageType) {
-		this.imageType = imageType;
-	}
+	@Column(name = "is_selected")
+	private boolean isSelected;
 }
