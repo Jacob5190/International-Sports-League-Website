@@ -29,6 +29,11 @@ public class DocumentServiceImpl implements DocumentService {
 	}
 
 	@Override
+	public Document getDocumentById (int id) {
+		return documentDAO.findById(id).isPresent() ? documentDAO.findById(id).get() : null;
+	}
+
+	@Override
 	public String upload (MultipartFile file) {
 		if (file == null) {
 			return "File null exception";

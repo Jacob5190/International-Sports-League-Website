@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface DocumentService {
 	List<Document> selectAll();
+	Document getDocumentById(int id);
 	String upload(MultipartFile file);
 	void deleteDocument(int id);
 }

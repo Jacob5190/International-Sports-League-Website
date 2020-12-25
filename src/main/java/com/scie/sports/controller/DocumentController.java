@@ -23,6 +23,11 @@ public class DocumentController {
 		return new ResponseEntity<>(documentService.selectAll(), HttpStatus.OK);
 	}
 
+	@GetMapping("/document/{id}")
+	public ResponseEntity<Document> getDocumentById(@PathVariable int id) {
+		return new ResponseEntity<>(documentService.getDocumentById(id), HttpStatus.OK);
+	}
+
 	@PostMapping("/admin/document")
 	public ResponseEntity<Void> uploadDocument(@RequestParam (name = "file") MultipartFile file) {
 		documentService.upload(file);

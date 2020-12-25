@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface CalendarEventService {
 	List<CalendarEvent> selectAll();
+	CalendarEvent getCalendarEventById(int id);
 	void updateEvent(String date, String title) throws ParseException;
 	void deleteEvent(int id);
 }

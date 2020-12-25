@@ -18,7 +18,7 @@ public class ImageController {
 	}
 
 	@PostMapping("/admin/image")
-	public void uploadImage(@RequestParam(name = "file")MultipartFile file) {
+	public void uploadImage(@RequestParam(name = "file") MultipartFile file) {
 		imageService.uploadGalleryImage(file);
 	}
 

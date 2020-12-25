@@ -25,6 +25,11 @@ public class CalendarEventServiceImpl implements CalendarEventService {
 	}
 
 	@Override
+	public CalendarEvent getCalendarEventById (int id) {
+		return calendarEventDAO.findById(id).isPresent() ? calendarEventDAO.findById(id).get() : null;
+	}
+
+	@Override
 	public void updateEvent (String date, String title) throws ParseException {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = dateFormat.parse(date);

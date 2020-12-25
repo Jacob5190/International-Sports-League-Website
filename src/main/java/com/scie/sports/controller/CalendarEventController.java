@@ -22,6 +22,11 @@ public class CalendarEventController {
 		return new ResponseEntity<>(calendarEventService.selectAll(), HttpStatus.OK);
 	}
 
+	@GetMapping("/calendar-event/{id}")
+	public ResponseEntity<CalendarEvent> getCalendarEventById(@PathVariable int id) {
+		return new ResponseEntity<>(calendarEventService.getCalendarEventById(id), HttpStatus.OK);
+	}
+
 	@PostMapping("/admin/calendar-event")
 	public ResponseEntity<String> uploadCalendarEvent(@RequestParam(name = "date") String date, @RequestParam(name = "title") String title) throws ParseException {
 		calendarEventService.updateEvent(date, title);
@@ -29,8 +34,8 @@ public class CalendarEventController {
 	}
 
 	@DeleteMapping("/admin/calendar-event/{id}")
-	public ResponseEntity<String> deleteCalendarEvent(@PathVariable int id) {
+	public ResponseEntity<Void> deleteCalendarEvent(@PathVariable int id) {
 		calendarEventService.deleteEvent(id);
-		return new ResponseEntity<>("Event " + id + " has been deleted", HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
