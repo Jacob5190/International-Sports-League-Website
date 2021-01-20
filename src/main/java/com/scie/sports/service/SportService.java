@@ -7,4 +7,5 @@ import java.util.List;
 public interface SportService {
 	List<Sport> getInvitationSport ();
 	Sport getSportById (int id);
+	List<Sport> getSport();
 }

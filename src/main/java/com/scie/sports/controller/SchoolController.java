@@ -1,12 +1,12 @@
 package com.scie.sports.controller;
 
+import com.scie.sports.pojo.Image;
 import com.scie.sports.pojo.School;
 import com.scie.sports.service.SchoolService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -27,5 +27,13 @@ public class SchoolController {
 	@GetMapping("/school")
 	public ResponseEntity<List<School>> getSchool() {
 		return new ResponseEntity<>(schoolService.getSchool(), HttpStatus.OK);
+	}
+	@PostMapping("/school")
+	public ResponseEntity<Void> uploadSchool(@RequestParam(name = "name") String name,
+	                                         @RequestParam(name = "alias") String alias,
+	                                         @RequestParam(name = "link") String link,
+	                                         @RequestParam(name = "image") MultipartFile image) {
+		schoolService.uploadSchool(name, alias, link, image);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

@@ -34,9 +34,9 @@ public class ImageServiceImpl implements ImageService {
 	}
 
 	@Override
-	public String uploadGalleryImage (MultipartFile file) {
+	public Image uploadImage (MultipartFile file, String type, int sportId) {
 		if (file == null) {
-			return "File null exception";
+			return null;
 		}
 		String savePath = UPLOAD_FOLDER;
 		File savePathFile = new File(savePath);
@@ -50,17 +50,18 @@ public class ImageServiceImpl implements ImageService {
 			Image i = new Image();
 			i.setPath(path);
 			i.setFileName(fileName);
-			i.setImageType("gallery");
-			imageDAO.save(i);
-			return "File upload success";
+			i.setImageType(type);
+			i.setSportId(sportId != 0 ? sportId : null);
+			return imageDAO.save(i);
 		} catch (IOException e) {
 			e.printStackTrace();
-			return "File save exception";
+			return null;
 		}
 	}
 
+
 	@Override
-	public void deleteGalleryImage (int id) {
+	public void deleteImage (int id) {
 		imageDAO.deleteById(id);
 	}
 }

@@ -8,6 +8,6 @@ import java.util.List;
 public interface ImageService {
 	List<Image> selectAll (String type);
 	Image getImageById (int id);
-	String uploadGalleryImage (MultipartFile file);
-	void deleteGalleryImage (int id);
+	Image uploadImage(MultipartFile file, String type, int sportId);
+	void deleteImage (int id);
 }

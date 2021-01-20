@@ -4,8 +4,10 @@ import com.scie.sports.pojo.Image;
 import com.scie.sports.pojo.School;
 import com.scie.sports.dao.ImageDAO;
 import com.scie.sports.dao.SchoolDAO;
+import com.scie.sports.service.ImageService;
 import com.scie.sports.service.SchoolService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,18 +18,18 @@ public class SchoolServiceImpl implements SchoolService {
 	final
 	SchoolDAO schoolDAO;
 	final
-	ImageDAO imageDAO;
+	ImageService imageService;
 
-	public SchoolServiceImpl (SchoolDAO schoolDAO, ImageDAO imageDAO) {
+	public SchoolServiceImpl (SchoolDAO schoolDAO, ImageService imageService) {
 		this.schoolDAO = schoolDAO;
-		this.imageDAO = imageDAO;
+		this.imageService = imageService;
 	}
 
 	@Override
 	public Map<String, Object> getSchoolAndImgById (int id) {
 		Map<String, Object> map = new HashMap<String, Object>(2);
 		School school = schoolDAO.findById(id).get();
-		Image image = imageDAO.findById(school.getImageId()).get();
+		Image image = imageService.getImageById(school.getImageId());
 		map.put("schoolObj", school);
 		map.put("imgObj", image);
 		return map;
@@ -41,5 +43,17 @@ public class SchoolServiceImpl implements SchoolService {
 	@Override
 	public School getSchoolById (int id) {
 		return (schoolDAO.findById(id).isPresent())?schoolDAO.findById(id).get():null;
+	}
+
+	@Override
+	public void uploadSchool (String name, String alias, String link, MultipartFile image) {
+		int imageId = imageService.uploadImage(image, "school", 0).getId();
+		School school = new School();
+		school.setName(name);
+		school.setAlias(alias);
+		school.setSchoolLink(link);
+		school.setImageId(imageId);
+		school = schoolDAO.save(school);
+		System.out.println(school);
 	}
 }

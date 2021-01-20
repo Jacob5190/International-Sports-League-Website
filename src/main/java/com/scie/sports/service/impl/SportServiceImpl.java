@@ -25,4 +25,9 @@ public class SportServiceImpl implements SportService {
 	public Sport getSportById (int id) {
 		return (sportDAO.findById(id).isPresent()) ? sportDAO.findById(id).get() : null;
 	}
+
+	@Override
+	public List<Sport> getSport () {
+		return sportDAO.findAll();
+	}
 }

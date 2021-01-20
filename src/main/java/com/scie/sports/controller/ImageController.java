@@ -17,9 +17,9 @@ public class ImageController {
 		this.imageService = imageService;
 	}
 
-	@PostMapping("/admin/image")
-	public void uploadImage(@RequestParam(name = "file") MultipartFile file) {
-		imageService.uploadGalleryImage(file);
+	@PostMapping("/admin/gallery")
+	public void uploadGalleryImage(@RequestParam(name = "file") MultipartFile file, @RequestParam(name = "sportId") int sportId) {
+		imageService.uploadImage(file, "gallery", sportId);
 	}
 
 	@GetMapping("/image")
@@ -33,7 +33,7 @@ public class ImageController {
 	}
 	@DeleteMapping("/admin/image/{id}")
 	public ResponseEntity<Void> deleteImage(@PathVariable int id) {
-		imageService.deleteGalleryImage(id);
+		imageService.deleteImage(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
