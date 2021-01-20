@@ -1,6 +1,5 @@
 package com.scie.sports.controller;
 
-import com.scie.sports.pojo.Image;
 import com.scie.sports.pojo.School;
 import com.scie.sports.service.SchoolService;
 import org.springframework.http.HttpStatus;
@@ -28,12 +27,17 @@ public class SchoolController {
 	public ResponseEntity<List<School>> getSchool() {
 		return new ResponseEntity<>(schoolService.getSchool(), HttpStatus.OK);
 	}
-	@PostMapping("/school")
+	@PostMapping("/admin/school")
 	public ResponseEntity<Void> uploadSchool(@RequestParam(name = "name") String name,
 	                                         @RequestParam(name = "alias") String alias,
 	                                         @RequestParam(name = "link") String link,
 	                                         @RequestParam(name = "image") MultipartFile image) {
 		schoolService.uploadSchool(name, alias, link, image);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	@DeleteMapping("/admin/school/{id}")
+	public ResponseEntity<Void> deleteSchool (@PathVariable int id) {
+		schoolService.deleteSchool(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

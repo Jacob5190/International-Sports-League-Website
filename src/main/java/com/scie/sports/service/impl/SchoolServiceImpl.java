@@ -2,7 +2,6 @@ package com.scie.sports.service.impl;
 
 import com.scie.sports.pojo.Image;
 import com.scie.sports.pojo.School;
-import com.scie.sports.dao.ImageDAO;
 import com.scie.sports.dao.SchoolDAO;
 import com.scie.sports.service.ImageService;
 import com.scie.sports.service.SchoolService;
@@ -27,7 +26,7 @@ public class SchoolServiceImpl implements SchoolService {
 
 	@Override
 	public Map<String, Object> getSchoolAndImgById (int id) {
-		Map<String, Object> map = new HashMap<String, Object>(2);
+		Map<String, Object> map = new HashMap<>(2);
 		School school = schoolDAO.findById(id).get();
 		Image image = imageService.getImageById(school.getImageId());
 		map.put("schoolObj", school);
@@ -55,5 +54,12 @@ public class SchoolServiceImpl implements SchoolService {
 		school.setImageId(imageId);
 		school = schoolDAO.save(school);
 		System.out.println(school);
+	}
+
+	@Override
+	public void deleteSchool (int id) {
+		Image img = (Image) this.getSchoolAndImgById(id).get("imgObj");
+		this.schoolDAO.deleteById(id);
+		this.imageService.deleteImage(img.getId());
 	}
 }
