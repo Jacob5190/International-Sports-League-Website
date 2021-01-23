@@ -31,6 +31,12 @@ public class ImageController {
 	public ResponseEntity<Image> getImageById(@PathVariable int id) {
 		return new ResponseEntity<>(imageService.getImageById(id), HttpStatus.OK);
 	}
+
+	@GetMapping("/image/sportId/{sportId}")
+	public ResponseEntity<List<Image>> getImageBySportId(@PathVariable int sportId) {
+		return new ResponseEntity<>(imageService.getImageBySportId(sportId), HttpStatus.OK);
+	}
+
 	@DeleteMapping("/admin/image/{id}")
 	public ResponseEntity<Void> deleteImage(@PathVariable int id) {
 		imageService.deleteImage(id);

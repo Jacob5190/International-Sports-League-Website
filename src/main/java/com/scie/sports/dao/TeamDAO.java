@@ -9,6 +9,7 @@ import java.util.List;
 public interface TeamDAO extends JpaRepository<Team, Integer> {
 	@Query (nativeQuery = true, value = "select distinct division from teams")
 	List<String> listDivision();
+	List<Team> findBySchoolId (int schoolId);
 	List<Team> findByAgeGroupAndGenderGroupAndDivision (int ageGroup, String genderGroup, int division);
 	List<Team> findBySchoolIdAndSportIdOrderByDivision (int schoolId, int sportId);
 	List<Team> findByDivision (int division);

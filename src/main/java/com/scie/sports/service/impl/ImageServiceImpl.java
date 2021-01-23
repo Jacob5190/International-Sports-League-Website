@@ -29,6 +29,11 @@ public class ImageServiceImpl implements ImageService {
 	}
 
 	@Override
+	public List<Image> getImageBySportId (int sportId) {
+		return imageDAO.findBySportId(sportId);
+	}
+
+	@Override
 	public Image getImageById (int id) {
 		return (imageDAO.findById(id).isPresent()) ? imageDAO.findById(id).get() : null;
 	}
@@ -62,6 +67,9 @@ public class ImageServiceImpl implements ImageService {
 
 	@Override
 	public void deleteImage (int id) {
+		String imagePath = getImageById(id).getPath();
+		File imageFile = new File(imagePath);
+		imageFile.delete();
 		imageDAO.deleteById(id);
 	}
 }

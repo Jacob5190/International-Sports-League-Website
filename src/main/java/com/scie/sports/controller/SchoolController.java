@@ -23,10 +23,12 @@ public class SchoolController {
 	public ResponseEntity<Map<String, Object>> getSchoolAndImgById(@PathVariable int id) {
 		return new ResponseEntity<>(schoolService.getSchoolAndImgById(id), HttpStatus.OK);
 	}
+
 	@GetMapping("/school")
 	public ResponseEntity<List<School>> getSchool() {
 		return new ResponseEntity<>(schoolService.getSchool(), HttpStatus.OK);
 	}
+
 	@PostMapping("/admin/school")
 	public ResponseEntity<Void> uploadSchool(@RequestParam(name = "name") String name,
 	                                         @RequestParam(name = "alias") String alias,

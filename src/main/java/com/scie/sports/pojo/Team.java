@@ -26,19 +26,19 @@ public class Team {
 	private int division;
 
 	@Column(name = "total_event")
-	private int totalEvent;
+	private int totalEvent = 0;
 
 	@Column(name = "win")
-	private int win;
+	private int win = 0;
 
 	@Column(name = "draw")
-	private int draw;
+	private int draw = 0;
 
 	@Column(name = "lost")
-	private int lost;
+	private int lost = 0;
 
 	@Column(name = "score")
-	private int score;
+	private int score = 0;
 
 	@Column(name = "age_group")
 	private int ageGroup;

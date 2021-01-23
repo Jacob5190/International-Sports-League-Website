@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ImageDAO extends JpaRepository<Image, Integer> {
 	List<Image> findByImageType(String type);
+	List<Image> findBySportId(int sportId);
 }

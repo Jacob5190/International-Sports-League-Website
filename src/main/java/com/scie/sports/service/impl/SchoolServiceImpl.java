@@ -52,8 +52,7 @@ public class SchoolServiceImpl implements SchoolService {
 		school.setAlias(alias);
 		school.setSchoolLink(link);
 		school.setImageId(imageId);
-		school = schoolDAO.save(school);
-		System.out.println(school);
+		schoolDAO.save(school);
 	}
 
 	@Override
